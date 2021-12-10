@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>Test Input</TITLE>
+	<SCRIPT LANGUAGE="JavaScript">
+		
+		function testResults (form) 
+		{			
+			var input = document.getElementsByName('array[]');
+
+			var output = [];
+			var inserted;
+			//forloop to go through the values
+			for (var i = 0, ii = input.length ; i < ii ; i++){
+			  inserted = false;
+			  //forloop to go through the values and make them in order
+			  for (var j = 0, jj = output.length ; j < jj ; j++){
+				if (input[i] < output[j]){
+				  inserted = true;
+				  //change the content if the value i is smaller than j
+				  output.splice(j, 0, input[i]);
+				  break;
+				}
+			  }
+			  
+			  if (!inserted)
+				output.push(input[i])
+			}
+			
+			document.getElementById("results").innerHTML = "The respective values in ascending order are :" + output;
+            document.getElementById("output").innerHTML = "Output";
+		}
+	</SCRIPT>
+</HEAD>
+	<BODY>
+		<h1 style="color: green;">
+			Insert any input: 
+		</h1>
+		<!---Form to insert the values--->
+		<FORM NAME="myform" ACTION="test.html" METHOD="GET">Enter something in the box: <BR>
+			<INPUT TYPE="text" NAME="array[]" VALUE=""><P>
+			<INPUT TYPE="text" NAME="array[]" VALUE=""><P>
+			<INPUT TYPE="text" NAME="array[]" VALUE=""><P>
+			<INPUT TYPE="text" NAME="array[]" VALUE=""><P>
+			<INPUT TYPE="text" NAME="array[]" VALUE=""><P>
+			<INPUT TYPE="button" NAME="button" Value="Sumbit" onClick="testResults(this.form)">
+		</FORM>
+		
+		<h3 id="output"></h3>
+		<!---shows the output--->
+		<p id="results"></p>
+	</BODY>
+</HTML>
